@@ -1,5 +1,7 @@
 package org.example.spring6;
 
+import org.example.spring6.bean.Clazz;
+import org.example.spring6.bean.Student;
 import org.example.spring6.bean.User;
 import org.example.spring6.jdbc.MyDataSource;
 import org.example.spring6.service.CustomerService;
@@ -11,6 +13,16 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.annotation.Order;
 
 public class test {
+
+
+    @Test
+    public void testCascade(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("cascade.xml");
+        Student student = applicationContext.getBean("studentBean", Student.class);
+        System.out.println(student);
+        Clazz clazz = applicationContext.getBean("clazzBean", Clazz.class);
+        System.out.println(clazz);
+    }
 
 
     @Test
