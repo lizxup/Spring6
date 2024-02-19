@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+
+    <!--    配置dao-->
+    <bean id="userDao" class="org.example.spring6.dao.UserDao"></bean>
+    <!--    配置dao-->
+    <bean id="vipDao" class="org.example.spring6.dao.VipDao"></bean>
+
+
+    <!--    配置service-->
+    <bean id="customerService" class="org.example.spring6.service.CustomerService">
+<!--        构造注入-->
+
+<!--        index属性指定下标 第一个是0   第二个是1 以此类推
+            ref 属性用来指定bean的id-->
+
+<!--        指定构造参数的第一个参数的下标是0-->
+        <constructor-arg index="0" ref="userDao"></constructor-arg>
+
+        <!--        指定构造参数的第二个参数的下标是1-->
+        <constructor-arg index="1" ref="vipDao"></constructor-arg>
+    </bean>
+
+
+
+    <!--    配置service-->
+    <bean id="customerService2" class="org.example.spring6.service.CustomerService">
+        <!--        构造注入-->
+
+        <!--        根据参数名称进行注入   name属性指定 参数名称
+                    ref 属性用来指定bean的id-->
+
+
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+
+        <constructor-arg name="vipDao" ref="vipDao"></constructor-arg>
+    </bean>
+
+    <!--    配置service-->
+    <bean id="customerService3" class="org.example.spring6.service.CustomerService">
+
+<!--        不指定下标 也不指定参数名称 spring 会通过参数类型的方式匹配-->
+        <constructor-arg ref="userDao"></constructor-arg>
+
+        <constructor-arg ref="vipDao"></constructor-arg>
+    </bean>
+</beans>
