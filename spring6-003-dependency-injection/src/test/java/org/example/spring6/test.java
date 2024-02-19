@@ -1,6 +1,7 @@
 package org.example.spring6;
 
 import org.example.spring6.bean.User;
+import org.example.spring6.jdbc.MyDataSource;
 import org.example.spring6.service.CustomerService;
 import org.example.spring6.service.OrderService;
 import org.example.spring6.service.UserService;
@@ -10,6 +11,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.annotation.Order;
 
 public class test {
+
+
+    @Test
+    public void testDataSource(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("set-di.xml");
+        MyDataSource myDataSource = applicationContext.getBean("myDataSource", MyDataSource.class);
+        System.out.println(myDataSource);
+    }
 
 
     @Test
