@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+<!--    使用ref属性引用 就是外部bean-->
+    <bean id="orderDao" class="org.example.spring6.dao.OrderDao"></bean>
+    <bean id="orderService" class="org.example.spring6.service.OrderService">
+        <property name="orderDao" ref="orderDao"></property>
+    </bean>
+
+
+<!--    内部bean-->
+    <bean id="orderService2" class="org.example.spring6.service.OrderService">
+        <property name="orderDao">
+<!--            在property属性中写bean-->
+            <bean id="orderDao2" class="org.example.spring6.dao.OrderDao"></bean>
+        </property>
+    </bean>
+
+
+
+
+<!--    注入简单类型-->
+
+    <bean id="user" class="org.example.spring6.bean.User">
+        <property name="username" value="zhangsan"></property>
+        <property name="password" value="lisi"></property>
+        <property name="age" value="20"></property>
+    </bean>
+
+
+
+</beans>
